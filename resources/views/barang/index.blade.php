@@ -144,16 +144,10 @@ $(document).ready(function(){
             }
         ]
     });
-
-    $('#table-barang_filter input').unbind().bind('keyup', function(e) {
-        if (e.keyCode == 13) {
-            tableItem.search(this.value).draw();
-        }
-    });
-
-    $('.filter_kategori').change(function() {
-        tableItem.draw();
-    });
+    
+    $('#barang_id').change(function () {
+        tableItem.ajax.reload()
+    })
 });
 </script>
 @endpush

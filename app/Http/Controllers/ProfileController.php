@@ -10,21 +10,13 @@ class ProfileController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            'profile_photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'profile_photo' => 'required|file|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-
-        if ($request->hasFile('profile_photo')) {
-            $file = $request->file('profile_photo');
-            $path = $file->store('profile_photos', 'public');
-            session(['photo' => $path]);
-
-
-            // Kirim path ke view via session flash
-            return back()->with('photo', $path);
-        }
-
-        return back()->withErrors('Upload gagal!');
-
-        
+        $namaFile = $request->profile_photo->getClientOriginalName();
+        $path = $request->profile_photo->storeAs('profile_photos', $namaFile, 'public');
+        session(['photo' => $path]); // disimpan di session sampai logout atau manual dihapus
+        return back();
+        // Kirim path ke view via session flash hanya untuk 1 request setelah upload
+        // return back()->with('photo', $path);
     }
 }

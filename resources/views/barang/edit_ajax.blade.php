@@ -29,6 +29,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                
                 <div class="form-group">
                     <label>Barang Kode</label>
                     <input value="{{ $barang->barang_kode }}" type="text" name="barang_kode" id="barang_kode" class="form-control" required>
@@ -38,6 +39,11 @@
                     <label>Barang Nama</label>
                     <input value="{{ $barang->barang_nama }}" type="text" name="barang_nama" id="barang_nama" class="form-control" required>
                     <small id="error-barang_nama" class="error-text form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <input value="{{ $barang->kategori_id }}" type="text" name="kategori_id" id="kategori_id" class="form-control" required>
+                    <small id="error-kategori_id" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
                     <label>Harga Beli</label>
