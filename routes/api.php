@@ -24,7 +24,7 @@ use App\Http\Controllers\Api\BarangController;
 
 //Login Logout Register
 Route::post('/register', App\Http\Controllers\Api\RegisterController::class)->name('register');
-Route:: post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
+Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
 Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
 
 
