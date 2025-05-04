@@ -2,26 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class BarangModel extends Model
 {
-    use HasFactory;
+    protected $table = 'm_barang';
+    protected $primaryKey = 'barang_id';
 
-    protected $table = 'm_barang'; // Explicitly define the correct table name
-    protected $primaryKey = 'barang_id'; // Define the primary key
+    protected $fillable = [
+        'kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual', 'image'
+    ];
 
-    protected $fillable = ['barang_id', 'kategori_id', 'barang_kode', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual']; // Pastikan kolom bisa diisi
-
-    public function users(): HasMany
+    // Accessor to generate image URL
+    protected function image(): Attribute
     {
-        return $this->hasMany(UserModel::class, 'barang_id', 'barang_id');
-    }
-
-    public function kategori()
-    {
-        return $this->belongsTo(KategoriModel::class, 'kategori_id', 'kategori_id');
+        return Attribute::make(
+            get: fn($image) => url('/storage/posts/' . $image)
+        );
     }
 }
